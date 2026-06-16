@@ -34,6 +34,9 @@ vim.lsp.config("ruff", {
       organizeImports = true,
     },
   },
+  on_attach = function(client, _)
+    client.server_capabilities.hoverProvider = false
+  end,
 })
 
 vim.lsp.config("jsonls", {
@@ -86,5 +89,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>rn", vim.lsp.buf.rename,       vim.tbl_extend("force", opts, { desc = "Renomear" }))
     map("n", "<leader>ca", vim.lsp.buf.code_action,  vim.tbl_extend("force", opts, { desc = "Code action" }))
     map("n", "gr",         vim.lsp.buf.references,   vim.tbl_extend("force", opts, { desc = "Referências" }))
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.supports_method("textDocument/documentHighlight") then
+      local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false }) 
+      -- Destaca a palavra quando o cursor para em cima
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = args.buf,
+        group = highlight_augroup,
+        callback = vim.lsp.buf.document_highlight,
+      })
+      -- Limpa o destaque quando o cursor se move
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        buffer = args.buf,
+        group = highlight_augroup,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
   end,
 })
