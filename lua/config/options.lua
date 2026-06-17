@@ -5,8 +5,8 @@ opt.number = true
 opt.relativenumber = true
 
 -- Indentação
-opt.tabstop = 4
-opt.shiftwidth = 4
+opt.tabstop = 2
+opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true
 
@@ -15,6 +15,7 @@ opt.termguicolors = true
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.scrolloff = 8
+opt.winborder = 'rounded'
 
 -- Busca
 opt.ignorecase = true
@@ -26,6 +27,7 @@ opt.splitbelow = true
 opt.splitright = true
 opt.clipboard = "unnamedplus"
 opt.updatetime = 250
+opt.undofile = true
 
 -- Linha guia de coluna
 opt.colorcolumn = "79"
