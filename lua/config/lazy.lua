@@ -93,7 +93,8 @@ require("lazy").setup({
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+          ["<CR>"]      = cmp.mapping.confirm({ select = false }),
+          ["<C-e>"]     = cmp.mapping.abort(),
           ["<Tab>"]     = cmp.mapping.select_next_item(),
           ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
         }),
