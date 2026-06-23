@@ -32,6 +32,7 @@ vim.lsp.config("ruff", {
   init_options = {
     settings = {
       organizeImports = true,
+      lineLength = 79,
     },
   },
   on_attach = function(client, _)
@@ -90,7 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>ca", vim.lsp.buf.code_action,  vim.tbl_extend("force", opts, { desc = "Code action" }))
     map("n", "gr",         vim.lsp.buf.references,   vim.tbl_extend("force", opts, { desc = "Referências" }))
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.supports_method("textDocument/documentHighlight") then
+    if client and client:supports_method("textDocument/documentHighlight") then
       local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false }) 
       -- Destaca a palavra quando o cursor para em cima
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
