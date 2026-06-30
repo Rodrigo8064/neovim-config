@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git", "clone", "--filter=blob:none",
@@ -6,6 +7,7 @@ if not vim.loop.fs_stat(lazypath) then
     "--branch=stable", lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -37,8 +39,8 @@ require("lazy").setup({
     config = function()
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Buscar arquivos" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep,  { desc = "Buscar no conteúdo" })
-      vim.keymap.set("n", "<leader>fb", builtin.buffers,    { desc = "Listar buffers" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Buscar no conteúdo" })
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Listar buffers" })
     end,
   },
 
@@ -82,9 +84,11 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
     },
     config = function()
       local cmp = require("cmp")
+      require("luasnip.loaders.from_vscode").lazy_load()
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -93,10 +97,10 @@ require("lazy").setup({
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"]      = cmp.mapping.confirm({ select = false }),
-          ["<C-e>"]     = cmp.mapping.abort(),
-          ["<Tab>"]     = cmp.mapping.select_next_item(),
-          ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<Tab>"] = cmp.mapping.select_next_item(),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
         }),
         sources = {
           { name = "nvim_lsp" },
@@ -111,11 +115,7 @@ require("lazy").setup({
   -- markdown view
   {
     'MeanderingProgrammer/render-markdown.nvim',
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
     opts = { render_modes = { 'n', 'v', 't' } },
   },
 
@@ -125,17 +125,17 @@ require("lazy").setup({
     config = function()
       require("gitsigns").setup({
         signs = {
-          add          = { text = "▎" },
-          change       = { text = "▎" },
-          delete       = { text = "" },
-          topdelete    = { text = "" },
+          add = { text = "▎" },
+          change = { text = "▎" },
+          delete = { text = "" },
+          topdelete = { text = "" },
           changedelete = { text = "▎" },
         },
       })
-      vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>",  { desc = "Próximo hunk" })
-      vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>",  { desc = "Hunk anterior" })
+      vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>", { desc = "Próximo hunk" })
+      vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>", { desc = "Hunk anterior" })
       vim.keymap.set("n", "<leader>hp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
-      vim.keymap.set("n", "<leader>hb", ":Gitsigns blame_line<CR>",   { desc = "Git blame" })
+      vim.keymap.set("n", "<leader>hb", ":Gitsigns blame_line<CR>", { desc = "Git blame" })
     end,
   },
   -- Auto pairs

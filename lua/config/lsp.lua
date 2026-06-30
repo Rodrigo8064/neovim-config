@@ -85,11 +85,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local map = vim.keymap.set
     local opts = { buffer = args.buf }
-    map("n", "gd",         vim.lsp.buf.definition,  vim.tbl_extend("force", opts, { desc = "Ir para definição" }))
+    map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Ir para definição" }))
     map("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, vim.tbl_extend("force", opts, { desc = "Documentação" }))
-    map("n", "<leader>rn", vim.lsp.buf.rename,       vim.tbl_extend("force", opts, { desc = "Renomear" }))
-    map("n", "<leader>ca", vim.lsp.buf.code_action,  vim.tbl_extend("force", opts, { desc = "Code action" }))
-    map("n", "gr",         vim.lsp.buf.references,   vim.tbl_extend("force", opts, { desc = "Referências" }))
+    map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Renomear" }))
+    map("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+    map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Referências" }))
     map("n", "<leader>d", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Mostrar mensagem de erro" }))
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client:supports_method("textDocument/documentHighlight") then
