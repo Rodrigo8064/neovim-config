@@ -49,7 +49,7 @@ vim.lsp.config("jsonls", {
 vim.lsp.config("yamlls", {
   capabilities = capabilities,
   cmd = { "yaml-language-server", "--stdio" },
-  filetypes = { "yaml", "yml" },
+  filetypes = { "yaml", "yml", 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
 })
 
 vim.lsp.config("marksman", {
@@ -90,6 +90,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>rn", vim.lsp.buf.rename,       vim.tbl_extend("force", opts, { desc = "Renomear" }))
     map("n", "<leader>ca", vim.lsp.buf.code_action,  vim.tbl_extend("force", opts, { desc = "Code action" }))
     map("n", "gr",         vim.lsp.buf.references,   vim.tbl_extend("force", opts, { desc = "Referências" }))
+    map("n", "<leader>d", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Mostrar mensagem de erro" }))
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client:supports_method("textDocument/documentHighlight") then
       local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false }) 
