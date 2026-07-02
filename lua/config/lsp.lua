@@ -23,6 +23,15 @@ vim.lsp.config("zubanls", {
   cmd = { "zuban", "server" },
   root_markers = { "pyproject.toml", ".git" },
   filetypes = { "python" },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "standard",
+      },
+    },
+  },
 })
 
 vim.lsp.config("ruff", {
