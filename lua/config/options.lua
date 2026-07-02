@@ -31,3 +31,5 @@ opt.undofile = true
 
 -- Linha guia de coluna
 opt.colorcolumn = "79"
+
+vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/shims/python3")

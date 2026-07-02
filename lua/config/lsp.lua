@@ -49,7 +49,7 @@ vim.lsp.config("jsonls", {
 vim.lsp.config("yamlls", {
   capabilities = capabilities,
   cmd = { "yaml-language-server", "--stdio" },
-  filetypes = { "yaml", "yml", 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
+  filetypes = { "yaml", },
 })
 
 vim.lsp.config("marksman", {

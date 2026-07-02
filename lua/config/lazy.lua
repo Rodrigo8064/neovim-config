@@ -11,6 +11,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  rocks = { enabled = false },
 
   -- Tema
   {
@@ -65,8 +66,8 @@ require("lazy").setup({
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+    "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = { "ruff", "jsonls", "yamlls", "marksman" },
@@ -116,7 +117,7 @@ require("lazy").setup({
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    opts = { render_modes = { 'n', 'v', 't' } },
+    opts = { render_modes = { 'n', 'v', 't' }, latex = { enabled = false } },
   },
 
   -- Git signs
