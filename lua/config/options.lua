@@ -9,6 +9,7 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true
+opt.softtabstop = 2
 
 -- Visual
 opt.termguicolors = true
@@ -16,6 +17,10 @@ opt.cursorline = true
 opt.signcolumn = "yes"
 opt.scrolloff = 8
 opt.winborder = 'rounded'
+opt.title = true
+opt.showbreak = '↪' 
+opt.breakindent = true
+opt.completeopt:append 'popup'
 
 -- Busca
 opt.ignorecase = true
