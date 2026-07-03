@@ -23,15 +23,6 @@ vim.lsp.config("zubanls", {
   cmd = { "zuban", "server" },
   root_markers = { "pyproject.toml", ".git" },
   filetypes = { "python" },
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        typeCheckingMode = "standard",
-      },
-    },
-  },
 })
 
 vim.lsp.config("ruff", {
@@ -42,6 +33,7 @@ vim.lsp.config("ruff", {
     settings = {
       organizeImports = true,
       lineLength = 79,
+      fixAll = true,
     },
   },
   on_attach = function(client, _)
@@ -58,7 +50,7 @@ vim.lsp.config("jsonls", {
 vim.lsp.config("yamlls", {
   capabilities = capabilities,
   cmd = { "yaml-language-server", "--stdio" },
-  filetypes = { "yaml", },
+  filetypes = { "yaml", "yml" },
 })
 
 vim.lsp.config("marksman", {
@@ -102,7 +94,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>d", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Mostrar mensagem de erro" }))
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client:supports_method("textDocument/documentHighlight") then
-      local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false }) 
+      local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
       -- Destaca a palavra quando o cursor para em cima
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         buffer = args.buf,
@@ -118,3 +110,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+vim.diagnostic.config {
+  severity_sort = true,
+  virtual_text = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '✘',
+      [vim.diagnostic.severity.WARN] = '▲',
+      [vim.diagnostic.severity.HINT] = '⚑',
+      [vim.diagnostic.severity.INFO] = '»',
+    },
+  },
+}
+

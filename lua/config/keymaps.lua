@@ -28,3 +28,7 @@ map("n", "<leader>gg", function()
   vim.cmd("startinsert")
 end, { desc = "Lazygit" })
 
+-- for search and replace
+map('n', '<leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and replace' })
+
+

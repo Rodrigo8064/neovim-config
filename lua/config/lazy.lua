@@ -76,6 +76,24 @@ require("lazy").setup({
     end,
   },
 
+  {
+    'stevearc/conform.nvim',
+    config = function()
+      require('conform').setup({
+        formatters_by_ft = {
+          python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
+          javascript = { 'prettier' },
+          typescript = { 'prettier' },
+          javascriptreact = { 'prettier' },
+          typescriptreact = { 'prettier' },
+          json = { 'prettier' },
+          css = { 'prettier' },
+          html = { 'prettier' },
+        },
+      })
+    end,
+  },
+
   -- Autocomplete
   {
     "hrsh7th/nvim-cmp",
