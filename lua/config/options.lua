@@ -18,7 +18,7 @@ opt.signcolumn = "yes"
 opt.scrolloff = 8
 opt.winborder = 'rounded'
 opt.title = true
-opt.showbreak = '↪' 
+opt.showbreak = '↪'
 opt.breakindent = true
 opt.completeopt:append 'popup'
 
@@ -38,3 +38,13 @@ opt.undofile = true
 opt.colorcolumn = "79"
 
 vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/shims/python3")
+
+-- highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
