@@ -21,6 +21,8 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Mover linha acima" })
 -- Manter cursor no centro ao rolar
 map("n", "<C-d>", "<C-d>zz", { desc = "Rolar baixo" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Rolar cima" })
+map("n", "}", "}zz", { noremap = true, silent = true })
+map("n", "{", "{zz", { noremap = true, silent = true })
 
 -- Lazygit
 map("n", "<leader>gg", function()
