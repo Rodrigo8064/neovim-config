@@ -39,4 +39,34 @@ vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
+-- Terminal integrado v2
+local term_buf = -1
+local term_win = -1
 
+map("n", "<leader>t", function()
+  if vim.api.nvim_win_is_valid(term_win) then
+    vim.api.nvim_win_hide(term_win)
+  else
+    vim.cmd("botright 15split")
+    local new_win = vim.api.nvim_get_current_win()
+    if vim.api.nvim_buf_is_valid(term_buf) then
+      vim.api.nvim_win_set_buf(new_win, term_buf)
+    else
+      local new_buf = vim.api.nvim_create_buf(false, true)
+      vim.api.nvim_win_set_buf(new_win, new_buf)
+      vim.fn.termopen(os.getenv("SHELL"))
+      term_buf = vim.api.nvim_get_current_buf()
+    end
+    term_win = new_win
+    vim.cmd("startinsert")
+  end
+end, { desc = "Toggle terminal" })
+
+-- Sair do modo insert do terminal sem fechar
+map("t", "<Esc>", "<C-\\><C-n>", { desc = "Sair do modo terminal" })
+
+-- Navegar do terminal para o código com Ctrl+k
+map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Ir para split acima" })
+
+-- Fechar terminal com leader+t também no modo terminal
+map("t", "<leader>t", "<C-\\><C-n>:lua vim.api.nvim_win_hide(0)<CR>", { desc = "Fechar terminal" })
