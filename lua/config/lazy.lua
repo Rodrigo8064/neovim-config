@@ -210,4 +210,27 @@ require("lazy").setup({
       require("treesitter-context").setup({})
     end,
   },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      -- Adaptador oficial para Python
+      "nvim-neotest/neotest-python",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-python")({
+            runner = "pytest",
+          }),
+        },
+        -- Ajustes visuais
+        status = { virtual_text = true }, -- Mostra o status do teste ao lado da linha
+        output = { open_on_run = true },  -- Abre a janela de erro automaticamente se falhar
+      })
+    end,
+  }
 })

@@ -62,6 +62,12 @@ map("n", "<leader>t", function()
   end
 end, { desc = "Toggle terminal" })
 
+-- Abre o terminal em uma divisão horizontal (como se fosse o Ctrl + x do Telescope)
+map('n', '<leader>tv', ':vsplit | terminal<CR>', { desc = 'Abrir terminal vertical' })
+
+-- Abre o terminal em uma divisão horizontal (como se fosse o Ctrl + x do Telescope)
+map('n', '<leader>tx', ':split | terminal<CR>', { desc = 'Abrir terminal horizontal' })
+
 -- Sair do modo insert do terminal sem fechar
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Sair do modo terminal" })
 
@@ -70,3 +76,23 @@ map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Ir para split acima" })
 
 -- Fechar terminal com leader+t também no modo terminal
 map("t", "<leader>t", "<C-\\><C-n>:lua vim.api.nvim_win_hide(0)<CR>", { desc = "Fechar terminal" })
+
+-- neotest
+vim.keymap.set("n", "<leader>tr", function() 
+  require("neotest").run.run() 
+end, { desc = "Rodar teste mais próximo" })
+
+-- 2. Roda todos os testes do arquivo atual
+vim.keymap.set("n", "<leader>tf", function() 
+  require("neotest").run.run(vim.fn.expand("%")) 
+end, { desc = "Rodar testes do arquivo" })
+
+-- 3. Abre/fecha o painel lateral com a lista e status de todos os testes
+vim.keymap.set("n", "<leader>ts", function() 
+  require("neotest").summary.toggle() 
+end, { desc = "Alternar painel de testes" })
+
+-- 4. Abre o resultado detalhado (output) do teste em uma janela flutuante
+vim.keymap.set("n", "<leader>to", function() 
+  require("neotest").output.open({ enter = true }) 
+end, { desc = "Mostrar resultado do teste" })
