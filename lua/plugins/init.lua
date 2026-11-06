@@ -16,6 +16,7 @@ local modules = {
   "telescope",
   "neo-tree",
   "treesitter",
+  "treesitter-textobjects",
   "mason",
   "completion",
   "conform",
@@ -23,6 +24,7 @@ local modules = {
   "autopairs",
   "markdown",
   "neotest",
+  "toggleterm",
 }
 
 for _, m in ipairs(modules) do
