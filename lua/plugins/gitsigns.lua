@@ -4,8 +4,8 @@ require("gitsigns").setup({
   signs = {
     add = { text = "▎" },
     change = { text = "▎" },
-    delete = { text = "" },       -- copie o glifo do seu arquivo original
-    topdelete = { text = "" },    -- idem
+    delete = { text = "" },
+    topdelete = { text = "" },
     changedelete = { text = "▎" },
   },
 })

@@ -17,6 +17,7 @@ opt.cursorline = true
 opt.signcolumn = "yes"
 opt.scrolloff = 12
 opt.winborder = 'rounded'
+vim.opt.shiftround = true
 opt.title = true
 opt.showbreak = '↪'
 opt.breakindent = true
@@ -34,16 +35,14 @@ opt.clipboard = "unnamedplus"
 opt.updatetime = 250
 opt.undofile = true
 opt.confirm = true
+vim.opt.updatetime = 400
+
+-- dobrar/recolher blocos
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99 
+vim.opt.foldlevelstart = 99
 
 -- Linha guia de coluna
 opt.colorcolumn = "79"
 vim.g.loaded_python3_provider = 0
-
--- highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})

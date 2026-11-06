@@ -24,3 +24,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+require('mason').setup {
+  ui = {
+    icons = {
+      package_installed = '✓',
+      package_uninstalled = '✗',
+      package_pending = '⟳',
+    },
+  },
+}

@@ -19,6 +19,15 @@ if #parsers_to_install > 0 then
   require("nvim-treesitter").install(parsers_to_install)
 end
 
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('treesitter-update-parsers', { clear = true }),
+  callback = function(ev)
+    if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' then
+      require('nvim-treesitter').update()
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
   callback = function(args)
