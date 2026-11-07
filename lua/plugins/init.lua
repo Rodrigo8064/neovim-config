@@ -2,9 +2,13 @@
 vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
-    if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+    if kind ~= "install" and kind ~= "update" then return end
+
+    if name == "nvim-treesitter" then
       if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
       vim.cmd("TSUpdate")
+    elseif name == "telescope-fzf-native.nvim" then
+      vim.system({ "make" }, { cwd = ev.data.path }):wait()
     end
   end,
 })
