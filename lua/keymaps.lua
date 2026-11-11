@@ -27,18 +27,6 @@ map("n", "{", "{zz", { silent = true })
 map("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Substituir palavra" })
 
--- Lazygit (fecha a janela quando o lazygit termina)
-map("n", "<leader>gg", function()
-  vim.cmd("botright 15split")
-  vim.cmd.terminal("lazygit")
-  vim.cmd.startinsert()
-  vim.api.nvim_create_autocmd("TermClose", {
-    buffer = 0,
-    once = true,
-    callback = function() vim.cmd("bdelete!") end,
-  })
-end, { desc = "Lazygit" })
-
 -- Terminal integrado (toggle)
 local term_buf, term_win = -1, -1
 

@@ -25,6 +25,7 @@ local modules = {
   "completion",
   "conform",
   "gitsigns",
+  "lazygit",
   "autopairs",
   "markdown",
   "neotest",
