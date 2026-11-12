@@ -2,7 +2,7 @@ vim.lsp.config("*", {
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
-vim.lsp.enable({ "zubanls", "ruff", "jsonls", "yamlls", "marksman" })
+vim.lsp.enable({ "zubanls", "ruff", "jsonls", "yamlls", "marksman", "ltex_plus" })
 
 vim.diagnostic.config({
   severity_sort = true,

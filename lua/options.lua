@@ -40,9 +40,19 @@ vim.opt.updatetime = 400
 -- dobrar/recolher blocos
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldlevel = 99 
+vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 
 -- Linha guia de coluna
 opt.colorcolumn = "79"
 vim.g.loaded_python3_provider = 0
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "text", "markdown" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "pt_br"
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+  end,
+})
