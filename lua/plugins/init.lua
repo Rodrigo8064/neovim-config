@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 local modules = {
   "colorscheme",
   "lualine",
+  "alpha",
   "telescope",
   "neo-tree",
   "treesitter",
