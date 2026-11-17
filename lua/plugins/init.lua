@@ -30,6 +30,7 @@ local modules = {
   "autopairs",
   "markdown",
   "neotest",
+  "smear-cursor",
   "toggleterm",
 }
 
